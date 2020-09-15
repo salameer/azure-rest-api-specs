@@ -4,16 +4,16 @@
 
 This is the AutoRest configuration file for Compute.
 
-
 The compute RP comprises of small services where each service has its own tag.
 Hence, each sub-service has its own swagger spec.
 
 All of them are tied together using this configuration and are packaged together into one compute client library.
 This makes it easier for customers to download one (NuGet/npm/pip/maven/gem) compute client library package rather than installing individual packages for each sub service.
 
-
 ---
+
 ## Getting Started
+
 To build the SDK for Compute, simply [Install AutoRest](https://aka.ms/autorest/install) and in this folder, run:
 
 > `autorest`
@@ -21,21 +21,20 @@ To build the SDK for Compute, simply [Install AutoRest](https://aka.ms/autorest/
 To see additional help and options, run:
 
 > `autorest --help`
+
 ---
 
 ## Configuration
 
-
-
 ### Basic Information
+
 These are the global settings for the Compute API.
 
 ``` yaml
 title: ComputeManagementClient
 description: Compute Client
 openapi-type: arm
-tag: package-2020-06-30
-
+tag: package-preview-2030-02
 directive:
   - where:
       - $.definitions.VirtualMachine.properties
@@ -207,7 +206,17 @@ directive:
       - TrackedResourcePatchOperation
     reason:
       - ACS service is deprecated so a PATCH endpoint won't be implemented
+```
 
+
+### Tag: package-preview-2030-02
+
+These settings apply only when `--tag=package-preview-2030-02` is specified on the command line.
+
+```yaml $(tag) == 'package-preview-2030-02'
+input-file:
+  - Microsoft.Compute/preview/2030-02-01/compute.json
+  - Microsoft.Compute/preview/2030-02-01/runCommands.json
 ```
 ### Tag: package-2020-06-30
 
@@ -735,10 +744,9 @@ input-file:
 - Microsoft.ContainerService/preview/2015-11-01-preview/containerService.json
 ```
 
-
 ---
-# Code Generation
 
+# Code Generation
 
 ## Swagger to SDK
 
@@ -784,7 +792,7 @@ output-folder: $(azure-libraries-for-java-folder)/azure-mgmt-compute
 
 ### Java multi-api
 
-```yaml $(java) && $(multiapi)
+``` yaml $(java) && $(multiapi)
 batch:
   - tag: package-disks-2018-04
   - tag: package-compute-only-2017-12
@@ -859,7 +867,7 @@ input-file:
 
 See configuration in [readme.azureresourceschema.md](./readme.azureresourceschema.md)
 
-## Multi-API/Profile support for AutoRest v3 generators 
+## Multi-API/Profile support for AutoRest v3 generators
 
 AutoRest V3 generators require the use of `--tag=all-api-versions` to select api files.
 
@@ -917,11 +925,10 @@ input-file:
 
 ```
 
-If there are files that should not be in the `all-api-versions` set, 
+If there are files that should not be in the `all-api-versions` set,
 uncomment the  `exclude-file` section below and add the file paths.
 
 ``` yaml $(tag) == 'all-api-versions'
 #exclude-file: 
 #  - $(this-folder)/Microsoft.Example/stable/2010-01-01/somefile.json
 ```
-
