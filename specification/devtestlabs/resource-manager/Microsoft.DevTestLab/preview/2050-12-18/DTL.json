@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "2018-09-15",
+    "version": "2050-12-18",
     "title": "DevTestLabsClient",
     "description": "The DevTest Labs Client."
   },
@@ -13390,7 +13390,7 @@
       "description": "Client API version.",
       "required": true,
       "type": "string",
-      "default": "2018-09-15"
+      "default": "2050-12-18"
     },
     "locationName": {
       "name": "locationName",
