@@ -4,10 +4,10 @@
 
 This is the AutoRest configuration file for DevTestLab.
 
-
-
 ---
+
 ## Getting Started
+
 To build the SDK for DevTestLab, simply [Install AutoRest](https://aka.ms/autorest/install) and in this folder, run:
 
 > `autorest`
@@ -15,21 +15,29 @@ To build the SDK for DevTestLab, simply [Install AutoRest](https://aka.ms/autore
 To see additional help and options, run:
 
 > `autorest --help`
+
 ---
 
 ## Configuration
 
-
-
 ### Basic Information
+
 These are the global settings for the DevTestLab API.
 
 ``` yaml
 openapi-type: arm
-tag: package-2018-09
+tag: package-preview-2050-09
 ```
 
 
+### Tag: package-preview-2050-09
+
+These settings apply only when `--tag=package-preview-2050-09` is specified on the command line.
+
+```yaml $(tag) == 'package-preview-2050-09'
+input-file:
+  - Microsoft.DevTestLab/preview/2050-09-15/DTL.json
+```
 ### Tag: package-2018-09
 
 These settings apply only when `--tag=package-2018-09` is specified on the command line.
@@ -57,10 +65,9 @@ input-file:
 - Microsoft.DevTestLab/preview/2015-05-21-preview/DTL.json
 ```
 
-
 ---
-# Code Generation
 
+# Code Generation
 
 ## Swagger to SDK
 
@@ -82,7 +89,6 @@ swagger-to-sdk:
     after_scripts:
       - node sdkauto_afterscript.js devtestlabs/resource-manager
 ```
-
 
 ## C#
 
@@ -114,11 +120,13 @@ python:
   package-name: azure-mgmt-devtestlabs
   clear-output-folder: true
 ```
+
 ``` yaml $(python) && $(python-mode) == 'update'
 python:
   no-namespace-folders: true
   output-folder: $(python-sdks-folder)/devtestlabs/azure-mgmt-devtestlabs/azure/mgmt/devtestlabs
 ```
+
 ``` yaml $(python) && $(python-mode) == 'create'
 python:
   basic-setup-py: true
@@ -136,4 +144,3 @@ See configuration in [readme.java.md](./readme.java.md)
 ## AzureResourceSchema
 
 See configuration in [readme.azureresourceschema.md](./readme.azureresourceschema.md)
-
